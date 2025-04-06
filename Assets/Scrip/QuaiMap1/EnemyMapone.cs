@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class EnemyMapone : MonoBehaviour
 {
-    public Transform pointA, pointB; // Điểm tuần tra
-    public Transform player; // Nhân vật Player
-    public float speed = 2f; // Tốc độ di chuyển
-    public float attackRange = 2f; // Khoảng cách để tấn công
-    public float retreatDistance = 1.5f; // Khoảng cách lùi lại sau khi tấn công
+    public Transform pointA, pointB; 
+    public Transform player; 
+    public float speed = 2f; 
+    public float attackRange = 2f; 
+    public float retreatDistance = 1.5f; 
     private bool isAttacking = false;
     private Transform target;
     private Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>(); // Lấy Animator
+        animator = GetComponent<Animator>(); 
         target = pointB; // Bắt đầu tuần tra về điểm B
-        animator.SetBool("Walk1", true); // Bắt đầu đi
+        animator.SetBool("Walk1", true); 
     }
 
     void Update()
     {
-        if (isAttacking) return; // Nếu đang tấn công, không di chuyển tuần tra
+        if (isAttacking) return; 
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -31,7 +31,7 @@ public class EnemyMapone : MonoBehaviour
         }
         else
         {
-            MoveBetweenPoints(); // Tiếp tục tuần tra nếu không thấy Player
+            MoveBetweenPoints();
         }
     }
 
@@ -59,10 +59,10 @@ public class EnemyMapone : MonoBehaviour
     {
         isAttacking = true;
 
-        // **Xoay mặt về phía Player trước khi lao vào**
+        // Xoay mặt về phía Player trước khi lao vào
         Flip(player.position.x);
 
-        // **Bước 1: Lao vào Player**
+        // Bước 1: Lao vào Player
         animator.SetBool("Walk1", true);
         while (Vector2.Distance(transform.position, player.position) > 0.5f)
         {
@@ -70,12 +70,12 @@ public class EnemyMapone : MonoBehaviour
             yield return null;
         }
 
-        // **Bước 2: Tấn công**
+        // Bước 2: Tấn công
         animator.SetBool("Walk1", false);
         animator.SetTrigger("Attack1");
         yield return new WaitForSeconds(1f);
 
-        // **Bước 3: Lùi lại**
+        // Bước 3: Lùi lại
         float direction = (transform.position.x > player.position.x) ? 1f : -1f;
         Vector3 retreatTarget = new Vector3(transform.position.x + (direction * retreatDistance), transform.position.y, transform.position.z);
 
@@ -88,7 +88,7 @@ public class EnemyMapone : MonoBehaviour
             yield return null;
         }
 
-        // **Bước 4: Kiểm tra Player có còn trong phạm vi không**
+        // Bước 4: Kiểm tra Player có còn trong phạm vi không
         if (Vector2.Distance(transform.position, player.position) <= attackRange)
         {
             yield return new WaitForSeconds(0.5f); // Delay giữa các lần tấn công

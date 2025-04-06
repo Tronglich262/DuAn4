@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; // For Slider
 using TMPro;
 
 public class LevelSystem : MonoBehaviour
@@ -6,25 +7,25 @@ public class LevelSystem : MonoBehaviour
     public int level;
     public int currentExp;
     public int expToNextLevel;
-    public int statPoints; // Điểm cộng khi lên cấp
+    public int statPoints; 
     public int attack;
     public int hp;
     public HealthSystem healthSystem;
-
+    public static bool isGameRestarted = false;
 
     public TextMeshProUGUI levelText;
-    public TextMeshProUGUI expText;
+    public Slider expSlider; 
     public TextMeshProUGUI statPointsText;
     public TextMeshProUGUI attackText;
     public TextMeshProUGUI hpText;
-    public GameObject skillPointPanel; // Bảng cộng điểm kỹ năng
+    public GameObject skillPointPanel; 
+    public static LevelSystem Instance;
 
     void Start()
     {
-        LoadLevelData(); 
+        LoadLevelData();
         UpdateUI();
     }
-
 
     public void GainExp(int amount)
     {
@@ -33,6 +34,7 @@ public class LevelSystem : MonoBehaviour
         {
             LevelUp();
         }
+
         SaveLevelData();
         UpdateUI();
     }
@@ -74,15 +76,15 @@ public class LevelSystem : MonoBehaviour
 
     public void UpdateUI()
     {
-        levelText.text = "Level: " + level;
-        expText.text = "EXP: " + currentExp + " / " + expToNextLevel;
+        levelText.text = "" + level;
+        // Update the experience slider
+        expSlider.value = (float)currentExp / expToNextLevel; // Cập nhật slider dựa trên EXP hiện tại
         statPointsText.text = "Stat Points: " + statPoints;
         attackText.text = "Attack: " + attack;
         hpText.text = "HP: " + hp;
     }
-    
 
-    private void SaveLevelData()
+    public void SaveLevelData()
     {
         PlayerPrefs.SetInt("Level", level);
         PlayerPrefs.SetInt("CurrentExp", currentExp);
@@ -101,11 +103,13 @@ public class LevelSystem : MonoBehaviour
             currentExp = PlayerPrefs.GetInt("CurrentExp");
             expToNextLevel = PlayerPrefs.GetInt("ExpToNextLevel");
             statPoints = PlayerPrefs.GetInt("StatPoints");
-            attack = PlayerPrefs.GetInt("Attack", 10); // Giá trị mặc định 10
-            hp = PlayerPrefs.GetInt("HP", 100); // Giá trị mặc định 100
+            attack = PlayerPrefs.GetInt("Attack", 10);
+            hp = PlayerPrefs.GetInt("HP", 100);
+            Debug.Log("Loaded data: Level=" + level + ", EXP=" + currentExp);
         }
         else
         {
+            Debug.Log("No save data found, resetting.");
             ResetLevelData();
         }
     }
@@ -120,16 +124,16 @@ public class LevelSystem : MonoBehaviour
         hp = 100;
         SaveLevelData();
     }
+
     public void ResetGame()
     {
         ResetLevelData();
         UpdateUI();
     }
+
     private void OnApplicationQuit()
     {
         PlayerPrefs.DeleteAll(); // Xóa toàn bộ dữ liệu khi thoát game
-        PlayerPrefs.Save();      // Đảm bảo dữ liệu bị xóa
+        PlayerPrefs.Save(); // Đảm bảo dữ liệu bị xóa
     }
-
-
 }

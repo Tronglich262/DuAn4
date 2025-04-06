@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public LevelSystem levelSystem; // Kéo vào từ Inspector
+    public LevelSystem levelSystem; 
 
-    private void OnDestroy() // Khi quái vật chết
+    private void OnDestroy() 
     {
         if (levelSystem != null)
         {
-            int expGained = Random.Range(100, 200); // EXP ngẫu nhiên từ 100-200
+            int expGained = Random.Range(100, 200);
             levelSystem.GainExp(expGained);
         }
     }
