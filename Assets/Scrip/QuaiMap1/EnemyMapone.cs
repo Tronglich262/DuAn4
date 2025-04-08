@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class EnemyMapone : MonoBehaviour
     private bool isAttacking = false;
     private Transform target;
     private Animator animator;
+    public int attackDamage = 10; // Sát thương gây ra cho Player
 
     void Start()
     {
@@ -98,6 +100,19 @@ public class EnemyMapone : MonoBehaviour
         {
             animator.SetBool("Walk1", true);
             isAttacking = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Đã va chạm với Player");
+            HealthSystem playerHealth = other.gameObject.GetComponent<HealthSystem>(); // Lấy HealthSystem từ Player
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage); // Gọi TakeDamage trên HealthSystem của Player
+            }
         }
     }
 }

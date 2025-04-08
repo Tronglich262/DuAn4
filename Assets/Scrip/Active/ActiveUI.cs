@@ -26,6 +26,12 @@ public class ActiveUI : MonoBehaviour
     public GameObject Buttonthanhtich;
 
     public GameObject Bangthanhtich;
+    public GameObject buttonthanhtich1;
+    
+    //character Ui
+    public GameObject SkilCharacterUI;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +42,11 @@ public class ActiveUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ToggleCharacterUI()
+    {
+        SkilCharacterUI.SetActive(!SkilCharacterUI.activeSelf);
     }
 
     public void ToggleBando()
@@ -162,7 +173,7 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
-                SceneManager.LoadScene("Map2");
+                SceneManager.LoadScene("Map4");
                 Time.timeScale = 1;
             }
             else
@@ -193,7 +204,7 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
-                SceneManager.LoadScene("Map2");
+                SceneManager.LoadScene("Map5");
                 Time.timeScale = 1;
             }
             else
@@ -224,7 +235,7 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
-                SceneManager.LoadScene("Map2");
+                SceneManager.LoadScene("Map6");
                 Time.timeScale = 1;
             }
             else
@@ -255,7 +266,7 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
-                SceneManager.LoadScene("Map2");
+                SceneManager.LoadScene("Map7");
                 Time.timeScale = 1;
             }
             else
@@ -286,7 +297,7 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
-                SceneManager.LoadScene("Map2");
+                SceneManager.LoadScene("Map8");
                 Time.timeScale = 1;
             }
             else
@@ -321,4 +332,6 @@ public class ActiveUI : MonoBehaviour
         Bangthanhtich.SetActive(!Bangthanhtich.activeSelf);
         
     }
+    //butotn thanh tich khi lv = 10
+    
 }

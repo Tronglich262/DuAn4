@@ -16,6 +16,8 @@ public class SkeletonsHealth : MonoBehaviour
     public float baseDame3 = 70f;
     public float baseDame4 = 50f;
     public float baseDame5 = 0f;
+    
+
 
     public LevelSystem levelSystem;
 
@@ -31,6 +33,7 @@ public class SkeletonsHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.CompareTag("Chieu1")) StartCoroutine(DameChieu1());
         if (other.CompareTag("Chieu2")) StartCoroutine(DameChieu2());
         if (other.CompareTag("Chieu3")) StartCoroutine(DameChieu3());
@@ -101,4 +104,5 @@ public class SkeletonsHealth : MonoBehaviour
             healthBar.value = currentHealth / maxHealth;
         }
     }
+    
 }

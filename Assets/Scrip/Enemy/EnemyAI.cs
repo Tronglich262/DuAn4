@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 2f; // Khoảng cách để attack
     private Transform target;
     private bool isAttacking = false;
+   
     
     private Animator animator; // Animator của Enemy
 
@@ -58,7 +59,7 @@ public class EnemyAI : MonoBehaviour
         isAttacking = true;
         animator.SetBool("Walk1", false);
         animator.SetBool("Attack1", true);
-
+      
         yield return new WaitForSeconds(1f); // Thời gian attack
 
         animator.SetBool("Attack1", false);
@@ -66,4 +67,7 @@ public class EnemyAI : MonoBehaviour
 
         isAttacking = false;
     }
+
+ 
+    
 }
