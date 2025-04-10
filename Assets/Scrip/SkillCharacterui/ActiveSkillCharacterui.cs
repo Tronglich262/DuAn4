@@ -31,7 +31,7 @@ public class ActiveSkillCharacterui : MonoBehaviour
 
     public void ToggleSkill2()
     {
-        if (levelSystem.level == 5)
+        if (levelSystem.level >= 5)
         {
             StartCoroutine(Dieukien());
             skill2.SetActive(true);
@@ -46,7 +46,7 @@ public class ActiveSkillCharacterui : MonoBehaviour
 
     public void ToggleSkill3()
     {
-        if (levelSystem.level == 10)
+        if (levelSystem.level >= 10)
         {
             StartCoroutine(Dieukien());
             skill3.SetActive(true);
@@ -61,7 +61,7 @@ public class ActiveSkillCharacterui : MonoBehaviour
 
     public void ToggleSkill4()
     {
-        if (levelSystem.level == 15)
+        if (levelSystem.level >= 15)
         {
             StartCoroutine(Dieukien());
             skill4.SetActive(true);
@@ -76,7 +76,7 @@ public class ActiveSkillCharacterui : MonoBehaviour
 
     public void ToggleSkill5()
     {
-        if (levelSystem.level == 10)
+        if (levelSystem.level >= 10)
         {
             StartCoroutine(Dieukien());
             skill5.SetActive(true);

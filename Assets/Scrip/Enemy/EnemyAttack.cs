@@ -7,7 +7,7 @@ public class EnemyAttack : MonoBehaviour
     private void DoDamage()
     {
         // Gây sát thương cho Player nếu còn trong vùng đánh
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2f); // tùy theo game bạn chỉnh radius
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.5f); // tùy theo game bạn chỉnh radius
         foreach (Collider2D hit in hits)
         {
             if (hit.CompareTag("Player"))

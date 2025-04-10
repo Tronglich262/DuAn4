@@ -3,36 +3,42 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform pointA, pointB; // Điểm A & B
-    public Transform player; // Player
+    public Transform pointA, pointB;
+    public Transform player;
     public float speed = 2f;
-    public float attackRange = 2f; // Khoảng cách để attack
+    public float attackRange = 2f;
+
     private Transform target;
     private bool isAttacking = false;
-   
-    
-    private Animator animator; // Animator của Enemy
+    private Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>(); // Lấy Animator có sẵn
-        target = pointB; // Enemy bắt đầu di chuyển về B
-        animator.SetBool("Walk1", true); // Bắt đầu đi
+        animator = GetComponent<Animator>();
+        target = pointB;
+        SetAnimationState(isWalking: true, isAttacking: false);
     }
 
     void Update()
     {
-        if (isAttacking) return; // Nếu đang attack thì không di chuyển
-
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= attackRange) // Nếu Player vào phạm vi tấn công
+        if (distanceToPlayer <= attackRange)
         {
-            StartCoroutine(AttackPlayer());
+            if (!isAttacking)
+            {
+                StartCoroutine(AttackPlayer());
+            }
+
+            FlipToPlayer();
         }
         else
         {
-            MoveBetweenPoints(); // Nếu không có Player, tiếp tục di chuyển giữa A và B
+            if (!isAttacking)
+            {
+                MoveBetweenPoints();
+                SetAnimationState(isWalking: true, isAttacking: false);
+            }
         }
     }
 
@@ -42,7 +48,7 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector2.Distance(transform.position, target.position) < 0.1f)
         {
-            target = (target == pointA) ? pointB : pointA; // Đổi hướng
+            target = (target == pointA) ? pointB : pointA;
             Flip();
         }
     }
@@ -50,24 +56,41 @@ public class EnemyAI : MonoBehaviour
     void Flip()
     {
         Vector3 scale = transform.localScale;
-        scale.x = (target == pointB) ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x); // Đổi hướng theo vị trí
+        scale.x = (target == pointB) ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
         transform.localScale = scale;
+    }
+
+    void FlipToPlayer()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = (player.position.x > transform.position.x) ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+    }
+
+    void SetAnimationState(bool isWalking, bool isAttacking)
+    {
+        animator.SetBool("Walk1", isWalking);
+        animator.SetBool("Attack1", isAttacking);
     }
 
     IEnumerator AttackPlayer()
     {
         isAttacking = true;
-        animator.SetBool("Walk1", false);
-        animator.SetBool("Attack1", true);
-      
-        yield return new WaitForSeconds(1f); // Thời gian attack
 
-        animator.SetBool("Attack1", false);
-        animator.SetBool("Walk1", true);
+        while (Vector2.Distance(transform.position, player.position) <= attackRange)
+        {
+            SetAnimationState(isWalking: false, isAttacking: true);
 
+            // Gây sát thương tại đây nếu cần
+
+            yield return new WaitForSeconds(1f); // thời gian giữa các đòn đánh
+
+            SetAnimationState(isWalking: false, isAttacking: false); // chuyển về idle nhẹ
+
+            yield return new WaitForSeconds(0.5f); // chờ thêm 1 lúc trước khi đánh tiếp
+        }
+
+        SetAnimationState(isWalking: true, isAttacking: false);
         isAttacking = false;
     }
-
- 
-    
 }

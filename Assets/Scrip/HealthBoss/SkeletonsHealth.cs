@@ -79,7 +79,7 @@ public class SkeletonsHealth : MonoBehaviour
 
 
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         UpdateHealthBar();

@@ -199,7 +199,7 @@ public class LevelSystem : MonoBehaviour
         if (level >= 1 && !checkqua1)
         {
             StartCoroutine(Dieukien());
-            GainExp(2000);
+            GainExp(2000000000);
             CoinManager.Instance.AddCoin(5000);
             checkqua1 = true;
             SaveLevelData();

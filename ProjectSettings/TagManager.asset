@@ -13,6 +13,8 @@ TagManager:
   - Chieu
   - Chieu5
   - Coin
+  - Ladder
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -26,8 +28,8 @@ TagManager:
   - MinimapIcon
   - iconquai
   - iconLoad
-  - 
-  - 
+  - Player
+  - enemyLayer
   - 
   - 
   - 

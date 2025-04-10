@@ -76,7 +76,7 @@ public class EnemyHealthV : MonoBehaviour
 
 
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         UpdateHealthBar();
