@@ -5,9 +5,13 @@ public class PlayerJump : MonoBehaviour
     public float jumpForce = 7f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+    public Transform groundCheck; // empty GameObject đặt dưới chân
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
     private Rigidbody2D rb;
     private Animator animator;
-    private bool canDoubleJump;
+    private bool isGrounded;
 
     void Start()
     {
@@ -17,22 +21,14 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        // Kiểm tra chạm đất
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         animator.SetFloat("VerticalSpeed", rb.linearVelocity.y);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            animator.SetTrigger("Jump"); // Kích hoạt animation ngay khi nhấn nhảy
-            
-            if (rb.linearVelocity.y == 0)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                canDoubleJump = true;
-            }
-            else if (canDoubleJump)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                canDoubleJump = false;
-            }
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetTrigger("Jump");
         }
     }
 

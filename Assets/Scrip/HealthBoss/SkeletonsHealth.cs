@@ -92,10 +92,11 @@ public class SkeletonsHealth : MonoBehaviour
         if (damageTextPrefab != null)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1f, 0));
-            GameObject text = Instantiate(damageTextPrefab, GameObject.Find("Canvas").transform);
+            GameObject text = Instantiate(damageTextPrefab, screenPosition, Quaternion.identity, GameObject.Find("Canvas").transform);
             text.GetComponent<DamageText>().Setup((int)damage, this.transform);
         }
     }
+
 
     void UpdateHealthBar()
     {

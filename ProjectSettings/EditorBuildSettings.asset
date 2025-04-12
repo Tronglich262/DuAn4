@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 8c14a4391b84c0c41a3532cb3de48fbc
   - enabled: 1
     path: Assets/Scene/Map1.unity
-    guid: 385d77417811a2a4a94aa431d5182b0f
+    guid: 5546052b64161eb42b90f283d6bd65c6
   - enabled: 1
     path: Assets/Scene/Map2.unity
     guid: a9a41b5cde714344fab8485bbe4e0f5d
@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Map8.unity
     guid: af6436c73cada134cb81dd8a0ec8bb14
+  - enabled: 1
+    path: Assets/Scene/Map11.unity
+    guid: 385d77417811a2a4a94aa431d5182b0f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

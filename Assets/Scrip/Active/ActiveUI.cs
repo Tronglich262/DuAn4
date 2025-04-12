@@ -30,6 +30,8 @@ public class ActiveUI : MonoBehaviour
     
     //character Ui
     public GameObject SkilCharacterUI;
+
+    public LevelSystem levelSystem;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,7 +54,7 @@ public class ActiveUI : MonoBehaviour
     public void ToggleBando()
     {
         ActiveBando.SetActive(!ActiveBando.activeSelf);
-        Time.timeScale = ActiveBando.activeSelf ? 0 : 1;
+       
     }
     public void toggleHelp()
     {
@@ -110,12 +112,14 @@ public class ActiveUI : MonoBehaviour
         {
             if (CoinManager.Instance.coinCount >= 500)
             {
-                CoinManager.Instance.AddCoin(-500); 
+                CoinManager.Instance.AddCoin(-500);
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map2");
-                Time.timeScale = 1;
+               // Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -142,11 +146,13 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map1");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -173,11 +179,13 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map4");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -204,11 +212,14 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
+
                 SceneManager.LoadScene("Map5");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -235,11 +246,13 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map6");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -266,11 +279,13 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map7");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
@@ -297,18 +312,20 @@ public class ActiveUI : MonoBehaviour
             if (CoinManager.Instance.coinCount >= 500)
             {
                 CoinManager.Instance.AddCoin(-500); 
+                StartCoroutine(levelSystem.Dieukien());
                 SceneManager.LoadScene("Map8");
                 Time.timeScale = 1;
             }
             else
             {
+                StartCoroutine(levelSystem.khongduDieukien());
                 Debug.Log("Không đủ tiền vào Scene");
                 
             }
         }
     }
    //bat tắt button ui game
-    public void AnUI()
+    public void AnUI()  
     {
         Buttonbando.SetActive(false);
         ButtonHelp.SetActive(false);

@@ -199,7 +199,7 @@ public class LevelSystem : MonoBehaviour
         if (level >= 1 && !checkqua1)
         {
             StartCoroutine(Dieukien());
-            GainExp(2000000000);
+            GainExp(2000);
             CoinManager.Instance.AddCoin(5000);
             checkqua1 = true;
             SaveLevelData();
@@ -279,14 +279,14 @@ public class LevelSystem : MonoBehaviour
         }
     }
 
-    IEnumerator Dieukien()
+    public IEnumerator Dieukien()
     {
         dudieukien.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         dudieukien.SetActive(false);
     }
 
-    IEnumerator khongduDieukien()
+    public IEnumerator khongduDieukien()
     {
         khongdudieukien.SetActive(true);
         yield return new WaitForSeconds(0.5f);
