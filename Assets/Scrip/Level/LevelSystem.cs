@@ -62,7 +62,7 @@ public class LevelSystem : MonoBehaviour
     {
         currentExp -= expToNextLevel;
         level++;
-        expToNextLevel *= 2;
+        expToNextLevel += 1000;
         statPoints += 10; // Nhận 10 điểm kỹ năng khi lên cấp
 
         skillPointPanel.SetActive(true); // Mở bảng cộng điểm kỹ năng khi lên cấp

@@ -34,7 +34,21 @@ public class AnimatorAttack : MonoBehaviour
                 
             }
         }
-        //map1
+        //map2Boss
+        //map2
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            EnemyHealthTwo boss2 = enemy.GetComponent<EnemyHealthTwo>();
+            if (boss2 != null)
+            {
+                float totalDamage = LevelSystem.Instance != null ? LevelSystem.Instance.attack : 10f;
+                boss2.TakeDamage(levelSystem.attack);
+                
+            }
+        }
+        //map11
         Collider2D[] hitEnemies1 = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -44,6 +58,19 @@ public class AnimatorAttack : MonoBehaviour
             {
                 float totalDamage = LevelSystem.Instance != null ? LevelSystem.Instance.attack : 10f;
                 skeleton1.TakeDamage(levelSystem.attack);
+                
+            }
+        }
+        //map1
+        Collider2D[] hitEnemies0 = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            EnemyHealthOne skeleton0 = enemy.GetComponent<EnemyHealthOne>();
+            if (skeleton0 != null)
+            {
+                float totalDamage = LevelSystem.Instance != null ? LevelSystem.Instance.attack : 10f;
+                skeleton0.TakeDamage(levelSystem.attack);
                 
             }
         }

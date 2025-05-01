@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     {
         if (levelSystem != null)
         {
-            int expGained = Random.Range(100, 200);
+            int expGained = Random.Range(500, 1000);
             levelSystem.GainExp(expGained);
         }
     }

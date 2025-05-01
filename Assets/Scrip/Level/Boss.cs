@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     {
         if (levelSystem != null)
         {
-            int expGained = Random.Range(1000, 2000); // EXP ngẫu nhiên từ 1000-2000
+            int expGained = Random.Range(5000, 10000); // EXP ngẫu nhiên từ 1000-2000
             levelSystem.GainExp(expGained);
         }
     }

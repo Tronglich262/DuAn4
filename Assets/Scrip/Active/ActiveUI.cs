@@ -54,12 +54,20 @@ public class ActiveUI : MonoBehaviour
     public void ToggleBando()
     {
         ActiveBando.SetActive(!ActiveBando.activeSelf);
-       
+    }
+
+    public void EndbanDo()
+    {
+        ActiveBando.SetActive(false);
     }
     public void toggleHelp()
     {
         help.SetActive(!help.activeSelf);
-        Time.timeScale = help.activeSelf ? 0 : 1;
+    }
+
+    public void EndHelp()
+    {
+        help.SetActive(false);
     }
     public void ToggleGoHome()
     {
@@ -347,7 +355,11 @@ public class ActiveUI : MonoBehaviour
     public void ToggleThanhTich()
     {
         Bangthanhtich.SetActive(!Bangthanhtich.activeSelf);
-        
+    }
+
+    public void endThanhTich()
+    {
+        Bangthanhtich.SetActive(false);
     }
     //butotn thanh tich khi lv = 10
     

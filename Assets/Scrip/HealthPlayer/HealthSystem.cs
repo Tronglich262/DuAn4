@@ -104,6 +104,7 @@ public class HealthSystem : MonoBehaviour
     //Hồi sinh
     public void ToggleYeshoisinh()
     {
+        check = false;
 
         if (CoinManager.Instance != null) // check tiền
         {

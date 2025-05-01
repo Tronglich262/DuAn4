@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BossV : MonoBehaviour
 {
-    public LevelSystem levelSystem; // Kéo vào từ Inspector
+    public LevelSystem levelSystem; 
 
-    private void OnDestroy() // Khi boss chết
+    private void OnDestroy()
     {
         if (levelSystem != null)
         {

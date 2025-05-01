@@ -5,9 +5,15 @@ public class PlayerJump : MonoBehaviour
     public float jumpForce = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
-    public Transform groundCheck; // empty GameObject đặt dưới chân
+    public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+
+    public float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
+    public float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -25,10 +31,24 @@ public class PlayerJump : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         animator.SetFloat("VerticalSpeed", rb.linearVelocity.y);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Coyote time
+        if (isGrounded)
+            coyoteTimeCounter = coyoteTime;
+        else
+            coyoteTimeCounter -= Time.deltaTime;
+
+        // Jump buffer
+        if (Input.GetButtonDown("Jump"))
+            jumpBufferCounter = jumpBufferTime;
+        else
+            jumpBufferCounter -= Time.deltaTime;
+
+        // Thực hiện nhảy
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             animator.SetTrigger("Jump");
+            jumpBufferCounter = 0;
         }
     }
 

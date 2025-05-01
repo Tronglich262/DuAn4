@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scene/Map8.unity
     guid: af6436c73cada134cb81dd8a0ec8bb14
   - enabled: 1
+    path: Assets/Scene/MapBoss.unity
+    guid: e3712ea30231a254287cc16d0477799d
+  - enabled: 0
     path: Assets/Scene/Map11.unity
     guid: 385d77417811a2a4a94aa431d5182b0f
   m_configObjects:

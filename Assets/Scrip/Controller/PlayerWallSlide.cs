@@ -13,7 +13,7 @@ public class PlayerWallSlide : MonoBehaviour
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isWallSliding;
-    public float wallSlideSpeed = 2f; // Tốc độ trượt
+    public float wallSlideSpeed = 2f; 
 
     private void Start()
     {
@@ -29,18 +29,18 @@ public class PlayerWallSlide : MonoBehaviour
 
     void CheckGrounded()
     {
-        // Kiểm tra có chạm đất không
+      
         isGrounded = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.1f, groundLayer);
     }
 
     void CheckWallSliding()
     {
-        // Kiểm tra nếu nhân vật chạm vào tường
+        
         bool leftTouchingWall = Physics2D.Raycast(wallCheckLeft.position, Vector2.left, 0.1f, wallLayer);
         bool rightTouchingWall = Physics2D.Raycast(wallCheckRight.position, Vector2.right, 0.1f, wallLayer);
         isTouchingWall = leftTouchingWall || rightTouchingWall;
 
-        // Nếu nhân vật không chạm đất và chạm tường
+       
         if (isTouchingWall && !isGrounded && rb.linearVelocity.y < 0)
         {
             isWallSliding = true;
